@@ -16,6 +16,9 @@ import com.elektron.currency.entity.UserEntity;
 import com.elektron.currency.repository.UserRepository;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @Api(value = "User Rest Controller")
 @RestController
@@ -26,6 +29,7 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@ApiOperation(value = "Find User by id ", response = ResponseEntity.class, tags = "findById")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Object> findById(@PathVariable("id") Long id) {
 		try {
@@ -43,6 +47,12 @@ public class UserController {
 		}
 	}
 	
+	@ApiOperation(value = "Find all users ", response = ResponseEntity.class, tags = "findAll")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Success|OK"),
+			@ApiResponse(code = 401, message = "Not Authorized!"),
+			@ApiResponse(code = 403, message = "Forbidden!"),
+			@ApiResponse(code = 404, message = "Not Found!") })
 	@GetMapping
 	public ResponseEntity<Object> findAll() {
 		try {

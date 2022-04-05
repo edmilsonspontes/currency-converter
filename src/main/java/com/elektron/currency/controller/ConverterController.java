@@ -26,6 +26,9 @@ import com.elektron.currency.repository.UserRepository;
 import com.elektron.currency.service.TransactionService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @Api(value = "Converter Rest Controller")
 @RestController
@@ -42,6 +45,7 @@ public class ConverterController {
 	@Autowired
 	private TransactionRepository transactionRepository;
 
+	@ApiOperation(value = "cconvert currencies", response = ResponseEntity.class, tags = "convert")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> convert(@RequestBody RequestEntity<Map> request) {
 		try {
@@ -61,6 +65,7 @@ public class ConverterController {
 		}
 	}
 	
+	@ApiOperation(value = "Find transaction by id ", response = ResponseEntity.class, tags = "findById")
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> findById(@PathVariable("id") Long id) {
 		try {
@@ -78,6 +83,12 @@ public class ConverterController {
 		}
 	}
 	
+	@ApiOperation(value = "Find all transactions", response = ResponseEntity.class, tags = "findAll")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Success|OK"),
+			@ApiResponse(code = 401, message = "Not Authorized!"),
+			@ApiResponse(code = 403, message = "Forbidden!"),
+			@ApiResponse(code = 404, message = "Not Found!") })
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> findAll() {
 		try {
@@ -95,8 +106,9 @@ public class ConverterController {
 		}
 	}
 	
+	@ApiOperation(value = "Find transactions by user ", response = ResponseEntity.class, tags = "findTransactionsByUser")
 	@GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> findByUser(@PathVariable("id") Long id) {
+	public ResponseEntity<Object> findTransactionsByUser(@PathVariable("id") Long id) {
 		try {
 			log.info("INFO: find transactions by user. ID: " + id);
 			UserEntity user = userRepository.findById(id).orElse(null);
