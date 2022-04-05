@@ -29,9 +29,9 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@ApiOperation(value = "Find User by id ", response = ResponseEntity.class, tags = "findById")
+	@ApiOperation(value = "Find User by id ", response = ResponseEntity.class, tags = "findUserById")
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Object> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Object> findUserById(@PathVariable("id") Long id) {
 		try {
 			log.info("INFO: find user ID: " + id);
 			UserEntity user = userRepository.findById(id).orElse(null);
@@ -47,14 +47,14 @@ public class UserController {
 		}
 	}
 	
-	@ApiOperation(value = "Find all users ", response = ResponseEntity.class, tags = "findAll")
+	@ApiOperation(value = "Find all users ", response = ResponseEntity.class, tags = "findAllUsers")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Success|OK"),
 			@ApiResponse(code = 401, message = "Not Authorized!"),
 			@ApiResponse(code = 403, message = "Forbidden!"),
 			@ApiResponse(code = 404, message = "Not Found!") })
 	@GetMapping
-	public ResponseEntity<Object> findAll() {
+	public ResponseEntity<Object> findAllUsers() {
 		try {
 			log.info("INFO: find all users");
 			Iterable<UserEntity> users = userRepository.findAll();

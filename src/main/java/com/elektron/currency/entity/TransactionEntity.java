@@ -50,6 +50,20 @@ public class TransactionEntity {
 	public TransactionEntity() {
 		super();
 	}
+	
+	@Override
+	public String toString() {
+		return "Transaction{" +
+				"id=" + id +
+				", user_id='" + user.getId() + '\'' +
+				", sourceCurrency='" + sourceCurrency + '\'' +
+				", sourceValue='" + sourceValue + '\'' +
+				", destinationCurrency='" + destinationCurrency + '\'' +
+				", destinationValue='" + destinationValue + '\'' +
+				", conversionRate='" + conversionRate + '\'' +
+				", dateTimeConverter='" + dateTimeConverter + '\'' +
+				'}';
+	}
     
     
 }

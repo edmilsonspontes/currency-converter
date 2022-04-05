@@ -45,7 +45,7 @@ public class ConverterController {
 	@Autowired
 	private TransactionRepository transactionRepository;
 
-	@ApiOperation(value = "cconvert currencies", response = ResponseEntity.class, tags = "convert")
+	@ApiOperation(value = "convert currencies", response = ResponseEntity.class, tags = "convert")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> convert(@RequestBody RequestEntity<Map> request) {
 		try {
@@ -65,9 +65,9 @@ public class ConverterController {
 		}
 	}
 	
-	@ApiOperation(value = "Find transaction by id ", response = ResponseEntity.class, tags = "findById")
+	@ApiOperation(value = "Find transaction by id ", response = ResponseEntity.class, tags = "findTransactionById")
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Object> findTransactionById(@PathVariable("id") Long id) {
 		try {
 			log.info("INFO: find transaction ID: " + id);
 			TransactionEntity transaction = transactionRepository.findById(id).orElse(null);
@@ -83,14 +83,14 @@ public class ConverterController {
 		}
 	}
 	
-	@ApiOperation(value = "Find all transactions", response = ResponseEntity.class, tags = "findAll")
+	@ApiOperation(value = "Find all transactions", response = ResponseEntity.class, tags = "findAllTransactions")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Success|OK"),
 			@ApiResponse(code = 401, message = "Not Authorized!"),
 			@ApiResponse(code = 403, message = "Forbidden!"),
 			@ApiResponse(code = 404, message = "Not Found!") })
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> findAll() {
+	public ResponseEntity<Object> findAllTransactions() {
 		try {
 			log.info("INFO: find all transactions");
 			Iterable<TransactionEntity> transactions = transactionRepository.findAll();
