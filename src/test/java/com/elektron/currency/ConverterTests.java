@@ -27,10 +27,6 @@ class ConverterTests {
 
     @Autowired
     private TransactionService transactionService;
-
-	@Test
-	void contextLoads() {
-	}
 	
 	/**
 	 * Tests if the transaction executed successfully
