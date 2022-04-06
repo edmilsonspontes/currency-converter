@@ -22,8 +22,6 @@ import lombok.Setter;
 @PropertySource("classpath:application.properties")
 public class ExchangeRatesAPIService {
 
-	//http://api.exchangeratesapi.io/v1/latest?access_key=8f09d4ce2eb9ea7620ef51976ae0f857&format=1&symbols=BRL, USD
-
 	@Autowired(required=true)
 	AppConfig appConfig;
 
@@ -64,7 +62,7 @@ public class ExchangeRatesAPIService {
 			}
 		}
 		catch (Exception e) {
-			Map errorMap = new HashMap<String, Object>();
+			Map<String, Object> errorMap = new HashMap<String, Object>();
 			resultMap.put("success", false);
 			errorMap.put("code", HttpStatus.BAD_GATEWAY.ordinal());
 			errorMap.put("info", e.getLocalizedMessage());
@@ -85,7 +83,7 @@ public class ExchangeRatesAPIService {
 			}
 		}
 		catch (Exception e) {
-			Map errorMap = new HashMap<String, Object>();
+			Map<String, Object> errorMap = new HashMap<String, Object>();
 			errorMap.put("success", false);
 			errorMap.put("code", HttpStatus.BAD_GATEWAY.ordinal());
 			errorMap.put("info", e.getLocalizedMessage());

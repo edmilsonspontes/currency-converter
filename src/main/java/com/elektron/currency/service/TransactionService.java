@@ -72,8 +72,7 @@ public class TransactionService {
 				result = new ConverterDTO(true, transactionDTO, null);
 			}
 			else {
-				Map errorMap = (Map) ratesMap.get("error");
-				result = new ConverterDTO(false, null, errorMap);
+				result = new ConverterDTO(false, null, ratesMap);
 			}
 		}
 		catch (Exception e) {
