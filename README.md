@@ -17,3 +17,12 @@ cd currency-converter
 mvn package
 mvn spring-boot:run
 ```
+## Repository in GitHub
+https://github.com/edmilsonspontes/currency-converter.git
+
+## API deployment
+https://elektron-currency-converter.herokuapp.com/
+
+## API Documentation in swagger
+https://elektron-currency-converter.herokuapp.com/swagger-ui/index.html
+
