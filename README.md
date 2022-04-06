@@ -1,4 +1,5 @@
 # currency-converter
+The currency-converter API performs the conversion between currencies using the conversion rate of the http://api.exchangerates.api.io service
 
 ## Requirements
 
